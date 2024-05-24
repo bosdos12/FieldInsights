@@ -33,7 +33,7 @@ module.exports = (app) => {
       const foundGroup = await Group.findById(groupID);
       if (!foundGroup) {
         return res.status(404).json({message: "No group found with the given group id."});
-      }
+      };
   
       const savedActuator = await Actuator.create({
         groupID: groupID,

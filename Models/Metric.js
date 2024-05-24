@@ -13,7 +13,7 @@ const PreModelMetric = new Schema({
   // The time at which the metric was saved
   metricTime: {type: String, required: false}
 
-});
+}, {timestamps: true});
 
 const Metric = mongoose.model("Metric", PreModelMetric);
 module.exports = Metric;
