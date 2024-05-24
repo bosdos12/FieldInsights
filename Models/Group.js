@@ -9,6 +9,9 @@ const PreModelGroup = new Schema({
 
   // User defined information about the group
   paragraph: {type: String, required: false},
+
+  // The date of the creation of the group
+  creationDate: {type: String, required: false}
   
 });
 

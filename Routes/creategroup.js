@@ -22,7 +22,8 @@ module.exports = (app) => {
     try {
       const createdGroup = await Group.create({
         name: name, 
-        paragraph: paragraph || ""
+        paragraph: paragraph || "",
+        creationDate: new Date().toISOString()
       });
 
       return res.status(200).json({groupID: createdGroup._id, message: "success"});
