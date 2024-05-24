@@ -28,7 +28,7 @@ require("./Routes/getsensorhistory")(app);
 require("./Routes/getactuatorevent")(app);
 require("./Routes/getallgroups")(app);
 require("./Routes/getalldevices")(app);
-
+require("./Routes/getallgroupdevices")(app);
 
 app.listen(PORT, () => {
   console.log(`SERVER RUNNING ON [PORT: ${PORT}]`);
