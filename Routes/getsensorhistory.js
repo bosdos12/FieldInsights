@@ -7,13 +7,14 @@ const mongoose = require("mongoose");
 
 
 module.exports = (app) => {
-  app.get("/api/getsensorlastmetric/:sensorID", async (req, res) => {
-    
+  app.get("/api/getsensorhistory/:sensorID", async (req, res) => {
 
     const sensorID = req.params.sensorID;
+    const pagination = req.query.pagination;
+    console.log(pagination);
 
     // Validate the request
-    if (!sensorID) {
+    if (!sensorID || !pagination) {
       return res.status(400).json({message: "Missing required data."});
     }
 
@@ -25,32 +26,23 @@ module.exports = (app) => {
     }
 
 
-    console.log(sensorID);
-
 
     try {
-      const foundMetric = await Metric.findOne({parentSensorID: sensorID});
 
-      console.log("foundmetric");
-      console.log(foundMetric);
+      const foundMetrics = await Metric.find({parentSensorID: sensorID}).sort({
+        createdAt: -1
+      }).limit(pagination);
 
-      if (!foundMetric) {
+      if (foundMetrics.length <= 0) {
         return res.status(400).json({message: "No metrics found."});
       }
 
-      return res.status(200).json({
-        metricID: foundMetric._id,
-        metricValue: foundMetric.metricValue,
-        metricTime: foundMetric.metricTime
-      })
+      return res.status(200).json(foundMetrics);
 
     } catch (err) {
       console.log(err);
       res.status(500).json({message: "Internal server error."});
     }
-
-    console.log(req.params.sensorID);
-
 
   });
 }

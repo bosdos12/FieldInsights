@@ -21,6 +21,9 @@ require("./Routes/createactuator")(app);
 require("./Routes/createhook")(app);
 require("./Routes/updatesensormetric")(app);
 require("./Routes/getsensorlastmetric")(app);
+require("./Routes/getsensorhistory")(app);
+require("./Routes/getactuatorevent")(app);
+
 
 
 app.listen(PORT, () => {

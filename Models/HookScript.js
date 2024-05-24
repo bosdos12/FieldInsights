@@ -16,7 +16,7 @@ const PreModelHookScript = new Schema({
   // The "n" value, which the metricsource will be compared to,
   // with the condition defined as the operation
   // If (metricsource 10) (less then) (conditonal 30)
-  conditional: {type: String, required: false},
+  conditional: {type: Array, required: false},
 
   // The ID of the actuator, which will be triggered if hook fires.
   actuator: {type: String, required: false},
